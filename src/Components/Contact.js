@@ -1,11 +1,5 @@
 import React from "react";
-<<<<<<< HEAD
-
-const Contact = ({ data }) => {
-
-=======
 const Contact = (props) => {
->>>>>>> b68269d4eab9301ff121ee78b6cbfd411cf388d3
   const handleChange = (e) => {};
 
   // const sendData = () => {
@@ -142,23 +136,6 @@ const Contact = (props) => {
             <br />
           </div>
         </div>
-<<<<<<< HEAD
-
-        <aside className="four columns footer-widgets">
-          <div className="widget widget_contact">
-            <h4>ที่อยู่และเบอร์โทรศัพท์</h4>
-            <p className="address">
-              {/* {name}
-              <br />
-              {street} <br />
-              {city}, {state} {zip}
-              <br />
-              <span>{phone}</span> */}
-            </p>
-          </div>
-        </aside>
-=======
->>>>>>> b68269d4eab9301ff121ee78b6cbfd411cf388d3
       </div>
     </>
   );

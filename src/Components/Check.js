@@ -14,15 +14,11 @@ const Check = (props) => {
       .get(`http://api.klhealthcare.net:8080/api/record/get/${searchID}`)
       .then(
         (response) => {
-<<<<<<< HEAD
-          setData(response.data);
-=======
           if (response.data != null) {
             console.log(response.data);
             recData = response.data;
             setData(recData);
           }
->>>>>>> b68269d4eab9301ff121ee78b6cbfd411cf388d3
         },
         (error) => {
           const resMessage =
@@ -31,11 +27,7 @@ const Check = (props) => {
               error.response.data.message) ||
             error.message ||
             error.toString();
-<<<<<<< HEAD
-          alert(resMessage);
-=======
           if (!data) setMessage(resMessage);
->>>>>>> b68269d4eab9301ff121ee78b6cbfd411cf388d3
         }
       );
   };
