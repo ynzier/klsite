@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Fade, Slide } from "react-reveal";
 import Contact from "./Contact";
 import axios from "axios";
-var recData = [];
 const Check = () => {
   const [searchID, setsearchID] = useState();
   const [data, setData] = useState([]);

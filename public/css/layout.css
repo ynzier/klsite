@@ -976,15 +976,7 @@ call-to-action .button {
   color: #0762f9;
   font-size: 13px;
 }
-#message-warning,
-#message-success {
-  display: none;
-  background: #0f0f0f;
-  padding: 24px 24px;
-  margin-bottom: 36px;
-  width: 65%;
-  margin-left: 26%;
-}
+
 #message-warning {
   color: #d72828;
 }
