@@ -2,10 +2,9 @@ import React, { useState } from "react";
 import { Fade, Slide } from "react-reveal";
 import Contact from "./Contact";
 import axios from "axios";
-var recData = [];
 const Check = (props) => {
   const [searchID, setsearchID] = useState();
-  const [data, setData] = useState();
+  const [data, setData] = useState([]);
 
   const [message, setMessage] = useState("");
   const getData = (e) => {
@@ -15,9 +14,7 @@ const Check = (props) => {
       .then(
         (response) => {
           if (response.data != null) {
-            console.log(response.data);
-            recData = response.data;
-            setData(recData);
+            setData(response.data);
           }
         },
         (error) => {
@@ -27,7 +24,7 @@ const Check = (props) => {
               error.response.data.message) ||
             error.message ||
             error.toString();
-          if (!data) setMessage(resMessage);
+          setMessage(resMessage);
         }
       );
   };

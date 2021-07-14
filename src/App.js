@@ -37,10 +37,6 @@ const App = () => {
       <Portfolio data={resumeData.portfolio} />
       <Checker data={resumeData.main} />
       <Testnomails data={resumeData.testmonials} />
-<<<<<<< HEAD
-      <Portfolio data={resumeData.portfolio} />
-=======
->>>>>>> b68269d4eab9301ff121ee78b6cbfd411cf388d3
       <Footer data={resumeData.main} />
     </div>
   );
