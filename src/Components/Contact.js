@@ -1,7 +1,6 @@
 import React from "react";
 const Contact = (props) => {
   const handleChange = (e) => {};
-
   // const sendData = () => {
   //   var data = {
   //     name: record.name,

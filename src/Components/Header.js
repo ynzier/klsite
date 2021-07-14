@@ -70,13 +70,13 @@ const Header = () => {
             </a>
           </li>
           <li>
-            <a className="smoothscroll" href="#claim">
+            <a className="smoothscroll" href="#contact">
               ตรวจสอบประกันสินค้า
             </a>
           </li>
 
           <li>
-            <a className="smoothscroll" href="https://www.facebook.com/klhealthcare.thailand/">
+            <a className="smoothscroll" href="#contact">
               ติดต่อเรา
             </a>
           </li>
@@ -99,7 +99,7 @@ const Header = () => {
           <hr />
           <Fade bottom duration={2000}>
             <ul className="social">
-              <a href="#check" className="button btn project-btn">
+              <a href="#contact" className="button btn project-btn">
                 ตรวจสอบประกันสินค้า
               </a>
               <a href="#policy" className="button btn project-btn">

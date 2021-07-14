@@ -15,28 +15,26 @@ const App = () => {
 
   // ReactGA.initialize("UA-110570651-1");
   // ReactGA.pageview(window.location.pathname);
-  if (!resumeData) {
-    $.ajax({
-      url: "./resumeData.json",
-      dataType: "json",
-      cache: false,
-      success: function (data) {
-        setresumeData(data);
-      }.bind(),
-      error: function (xhr, status, err) {
-        console.log(err);
-      },
-    });
-  }
+  $.ajax({
+    url: "./resumeData.json",
+    dataType: "json",
+    cache: true,
+    success: function (data) {
+      setresumeData(data);
+    }.bind(),
+    error: function (xhr, status, err) {
+      console.log(err);
+    },
+  });
 
   return (
     <div className="App">
       <Header data={resumeData.main} />
       <About data={resumeData.main} />
       <Policy data={resumeData.policy} />
+      <Testnomails data={resumeData.testmonials} />
       <Portfolio data={resumeData.portfolio} />
       <Checker data={resumeData.main} />
-      <Testnomails data={resumeData.testmonials} />
       <Footer data={resumeData.main} />
     </div>
   );

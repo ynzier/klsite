@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { Fade, Slide } from "react-reveal";
 import Contact from "./Contact";
 import axios from "axios";
-const Check = (props) => {
+var recData = [];
+const Check = () => {
   const [searchID, setsearchID] = useState();
   const [data, setData] = useState([]);
 
@@ -24,7 +25,7 @@ const Check = (props) => {
               error.response.data.message) ||
             error.message ||
             error.toString();
-          setMessage(resMessage);
+          if (!data) setMessage(resMessage);
         }
       );
   };

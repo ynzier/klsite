@@ -22,7 +22,14 @@ const Testimonials = ({ data }) => {
             <h1>ความคิดเห็นจากลูกค้า</h1>
           </div>
           <div className="eight columns flex-container">
-            <ul className="slides">{testimonials}</ul>
+            <ul className="slides">
+              <li key={testimonials.user}>
+                <blockquote>
+                  <p>{testimonials.text}</p>
+                  <cite>{testimonials.user}</cite>
+                </blockquote>
+              </li>
+            </ul>
           </div>
         </div>
       </div>

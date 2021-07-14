@@ -4,20 +4,7 @@ import Fade from "react-reveal";
 
 let id = 0;
 const Portfolio = ({ data }) => {
-  if (!data) return null;
-
-  const projects = data.projects.map(function (projects) {
-    let projectImage = "images/portfolio/" + projects.image;
-
-    return (
-      <div key={id++} className="columns portfolio-item">
-        <div className="item-wrap">
-          <Zmage alt={projects.title} src={projectImage} />
-          <div style={{ textAlign: "center" }}>{projects.title}</div>
-        </div>
-      </div>
-    );
-  });
+  let projectImage = "images/portfolio/";
 
   return (
     <section id="portfolio">
@@ -30,7 +17,36 @@ const Portfolio = ({ data }) => {
               id="portfolio-wrapper"
               className="bgrid-quarters s-bgrid-thirds cf"
             >
-              {projects}
+              <div key={id++} className="columns portfolio-item">
+                <div className="item-wrap">
+                  <Zmage alt="" src={projectImage + "02.jpg"} />
+                </div>
+              </div>
+              <div key={id++} className="columns portfolio-item">
+                <div className="item-wrap">
+                  <Zmage alt="" src={projectImage + "04.jpg"} />
+                </div>
+              </div>
+              <div key={id++} className="columns portfolio-item">
+                <div className="item-wrap">
+                  <Zmage alt="" src={projectImage + "06.jpg"} />
+                </div>
+              </div>
+              <div key={id++} className="columns portfolio-item">
+                <div className="item-wrap">
+                  <Zmage alt="" src={projectImage + "05.jpg"} />
+                </div>
+              </div>
+              <div key={id++} className="columns portfolio-item">
+                <div className="item-wrap">
+                  <Zmage alt="" src={projectImage + "01.jpg"} />
+                </div>
+              </div>
+              <div key={id++} className="columns portfolio-item">
+                <div className="item-wrap">
+                  <Zmage alt="" src={projectImage + "03.jpg"}  />
+                </div>
+              </div>
             </div>
           </div>
         </div>
