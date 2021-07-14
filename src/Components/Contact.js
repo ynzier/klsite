@@ -1,21 +1,15 @@
 import React, { useState } from "react";
 import axios from "axios";
 const Contact = (props) => {
-  const initialTicketState = {
-    name: "",
-    serialID: "",
-    tel: "",
-    email: "",
-    subject: "สอบถามเกี่ยวกับนโยบายประกันสินค้า",
-    message: "",
-  };
   const [show, setshow] = useState(false);
-  const [ticket, setTicket] = useState(initialTicketState);
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
-    setTicket({ ...ticket, [name]: value });
-  };
+
+  const [name, setname] = useState();
+  const [serialID, setserialID] = useState();
+  const [email, setemail] = useState();
+  const [tel, settel] = useState();
+  const [message, setmessage] = useState();
   const [base64TextString, setBase64TextString] = useState();
+  const [subject, setsubject] = useState("สอบถามเกี่ยวกับนโยบายประกันสินค้า");
   const handleFileChange = (e: any) => {
     let file = e.target.files[0];
     if (file) {
@@ -36,20 +30,29 @@ const Contact = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const formData = new FormData();
-    formData.append("ticket", ticket);
-    if (!base64TextString) formData.set("base64TextString", null);
-    if (base64TextString) {
-      formData.append("base64TextString", base64TextString);
-    }
-    console.log(ticket);
+
+    const formData = {
+      name: name,
+      serialID: serialID,
+      email: email,
+      tel: tel,
+      subject: subject,
+      message: message,
+      image: base64TextString,
+    };
     axios
       .post("http://api.klhealthcare.net:8080/api/ticket/add", formData)
       .then((res) => {
         setshow(true);
       })
-      .catch((e) => {
-        console.log(e);
+      .catch((error) => {
+        const resMessage =
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+          error.message ||
+          error.toString();
+        alert(resMessage);
       });
   };
 
@@ -68,7 +71,7 @@ const Contact = (props) => {
                   size="35"
                   id="contactName"
                   name="name"
-                  onChange={handleInputChange}
+                  onChange={(e) => setname(e.target.value)}
                 />
               </div>
               <div>
@@ -78,7 +81,7 @@ const Contact = (props) => {
                   size="35"
                   id="contactEmail"
                   name="serialID"
-                  onChange={handleInputChange}
+                  onChange={(e) => setserialID(e.target.value)}
                 />
               </div>
               <div>
@@ -86,11 +89,11 @@ const Contact = (props) => {
                   เบอร์โทรศัพท์ / Tel. <span className="required">*</span>
                 </label>
                 <input
-                  type="text"
+                  type="tel"
                   size="35"
                   id="contactEmail"
                   name="tel"
-                  onChange={handleInputChange}
+                  onChange={(e) => settel(e.target.value)}
                 />
               </div>
               <div>
@@ -100,17 +103,17 @@ const Contact = (props) => {
                 <input
                   type="text"
                   size="35"
-                  id="contactEmail"
                   name="email"
-                  onchange={handleInputChange}
+                  onChange={(e) => setemail(e.target.value)}
                 />
               </div>
 
               <div>
-                <label htmlFor="contactSubject">
-                  หัวข้อ / Subject<span className="required">*</span>
-                </label>
-                <select name="subject" onChange={handleInputChange}>
+                <label htmlFor="contactSubject">หัวข้อ / Subject</label>
+                <select
+                  name="subject"
+                  onChange={(e) => setsubject(e.target.value)}
+                >
                   <option value="สอบถามเกี่ยวกับนโยบายประกันสินค้า">
                     สอบถามเกี่ยวกับนโยบายประกันสินค้า
                   </option>
@@ -131,14 +134,12 @@ const Contact = (props) => {
                   rows="15"
                   id="contactMessage"
                   name="message"
-                  onChange={handleInputChange}
+                  onChange={(e) => setmessage(e.target.value)}
                 ></textarea>
               </div>
 
               <div>
-                <label htmlFor="contactEmail">
-                  ภาพประกอบ / Image <span className="required">*</span>
-                </label>
+                <label htmlFor="contactEmail">ภาพประกอบ / Image</label>
                 <input
                   type="file"
                   size="35"
@@ -147,11 +148,10 @@ const Contact = (props) => {
                   onChange={handleFileChange}
                 />
               </div>
-              <div>
-                <button className="submit" type="submit">
-                  ส่ง
-                </button>
-              </div>
+
+              <button className="submit" type="submit">
+                ส่ง
+              </button>
             </fieldset>
           </form>
           {show && (

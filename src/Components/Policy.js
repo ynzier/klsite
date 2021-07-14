@@ -59,7 +59,7 @@ const Policy = () => {
 
           <div className="nine columns main-col">
             <div>
-              <p>""</p>
+              <p>"รอข้อมูล"</p>
             </div>
           </div>
         </div>
@@ -74,7 +74,7 @@ const Policy = () => {
 
           <div className="nine columns main-col">
             <div>
-              <p>""</p>
+              <p>"รอข้อมูล"</p>
             </div>
           </div>
         </div>

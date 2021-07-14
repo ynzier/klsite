@@ -88,7 +88,7 @@ const Header = () => {
           <img
             className="profile-pic"
             src={profilepic}
-            alt=""
+            alt="KLHealthCare"
           />
           <Fade bottom>
             <h1 className="responsive-headline">{name}</h1>
