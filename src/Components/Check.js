@@ -2,36 +2,31 @@ import React, { useState } from "react";
 import { Fade, Slide } from "react-reveal";
 import Contact from "./Contact";
 import axios from "axios";
-
 const Check = () => {
   const [searchID, setsearchID] = useState();
-  const [data, setData] = useState([]);
-  const [status, setstatus] = useState(0);
+  const [data, setData] = useState();
+
   const [message, setMessage] = useState("");
   const getData = (e) => {
     e.preventDefault();
     axios
-      .get('http://api.klhealthcare.net:8080/api/record/get/'+ {searchID})
-      .then(
-        (response) => {
-          if (response.data != null) {
-            setData(response.data);
-            setstatus(1);
-          }
-        },
-        (error) => {
-          const resMessage =
-            (error.response &&
-              error.response.data &&
-              error.response.data.message) ||
-            error.message ||
-            error.toString();
-          if (!data) {
-            setMessage(resMessage);
-            alert(message);
-          }
+      .get(`http://api.klhealthcare.net:8080/api/record/get/${searchID}`)
+      .then((response) => {
+        if (response.data != null) {
+          setData(response.data);
+          setMessage();
         }
-      );
+      })
+      .catch((error) => {
+        const resMessage =
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+          error.message ||
+          error.toString();
+        setMessage(resMessage);
+        setData();
+      });
   };
 
   return (
@@ -71,7 +66,7 @@ const Check = () => {
                 </div>
               )}
             </form>
-            {status === 1 && (
+            {data ? (
               <div className="nine columns main-col">
                 <div className="row item">
                   <div className="twelve columns">
@@ -90,6 +85,8 @@ const Check = () => {
                   </div>
                 </div>
               </div>
+            ) : (
+              ""
             )}
             <Fade bottom duration={1000}>
               <div className="row section-head">
