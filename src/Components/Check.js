@@ -2,19 +2,21 @@ import React, { useState } from "react";
 import { Fade, Slide } from "react-reveal";
 import Contact from "./Contact";
 import axios from "axios";
+
 const Check = () => {
   const [searchID, setsearchID] = useState();
   const [data, setData] = useState([]);
-
+  const [status, setstatus] = useState(0);
   const [message, setMessage] = useState("");
   const getData = (e) => {
     e.preventDefault();
     axios
-      .get(`http://api.klhealthcare.net:8080/api/record/get/${searchID}`)
+      .get('http://api.klhealthcare.net:8080/api/record/get/'+ {searchID})
       .then(
         (response) => {
           if (response.data != null) {
             setData(response.data);
+            setstatus(1);
           }
         },
         (error) => {
@@ -24,7 +26,10 @@ const Check = () => {
               error.response.data.message) ||
             error.message ||
             error.toString();
-          if (!data) setMessage(resMessage);
+          if (!data) {
+            setMessage(resMessage);
+            alert(message);
+          }
         }
       );
   };
@@ -66,27 +71,25 @@ const Check = () => {
                 </div>
               )}
             </form>
-            {data[0] ? (
+            {status === 1 && (
               <div className="nine columns main-col">
                 <div className="row item">
                   <div className="twelve columns">
                     <p style={{ color: "white" }}>
-                      รุ่นสินค้า : {data[0].modelID}
+                      รุ่นสินค้า : {data.modelID}
                     </p>
                     <p style={{ color: "white" }}>
-                      วันที่ซื้อสินค้า : {data[0].purchaseDate}
+                      วันที่ซื้อสินค้า : {data.purchaseDate}
                     </p>
                     <p style={{ color: "white" }}>
-                      ระยะเวลาการรับประกัน : {data[0].warrantyTime} ปี
+                      ระยะเวลาการรับประกัน : {data.warrantyTime} ปี
                     </p>
                     <p style={{ color: "white" }}>
-                      วันที่สิ้นสุดการรับประกัน : {data[0].expireDate}
+                      วันที่สิ้นสุดการรับประกัน : {data.expireDate}
                     </p>
                   </div>
                 </div>
               </div>
-            ) : (
-              ""
             )}
             <Fade bottom duration={1000}>
               <div className="row section-head">
