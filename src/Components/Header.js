@@ -37,7 +37,6 @@ const Header = () => {
     });
   }
 
-  
   const profilepic = "images/icon.png";
 
   return (
@@ -85,11 +84,7 @@ const Header = () => {
 
       <div className="row banner">
         <div className="banner-text">
-          <img
-            className="profile-pic"
-            src={profilepic}
-            alt="KLHealthCare"
-          />
+          <img className="profile-pic" src={profilepic} alt="KLHealthCare" />
           <Fade bottom>
             <h1 className="responsive-headline">{name}</h1>
           </Fade>
@@ -101,9 +96,6 @@ const Header = () => {
             <ul className="social">
               <a href="#contact" className="button btn project-btn">
                 ตรวจสอบประกันสินค้า
-              </a>
-              <a href="#policy" className="button btn project-btn">
-                ขยายการรับประกัน
               </a>
             </ul>
           </Fade>
